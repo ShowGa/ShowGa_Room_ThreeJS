@@ -15,6 +15,8 @@ export function Room(props) {
     );
     bakedTextureFirst.flipY = false;
     bakedTextureSecond.flipY = false;
+    bakedTextureFirst.colorSpace = THREE.SRGBColorSpace;
+    bakedTextureSecond.colorSpace = THREE.SRGBColorSpace;
 
     return (
         <group {...props} dispose={null}>

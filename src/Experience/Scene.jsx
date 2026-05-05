@@ -1,10 +1,13 @@
+import { Center } from "@react-three/drei";
 import { Room } from "./models/Room";
 
 const Scene = () => {
     return (
-        <group>
-            <Room />
-        </group>
+        <Center>
+            <group>
+                <Room />
+            </group>
+        </Center>
     );
 };
 

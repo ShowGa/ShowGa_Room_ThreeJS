@@ -10,7 +10,8 @@ const Experience = () => {
             <Canvas
                 gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
-                    toneMapping: THREE.AgXToneMapping,
+                    toneMapping: THREE.ACESFilmicToneMapping,
+                    toneMappingExposure: 1.5,
                 }}
             >
                 <PerspectiveCamera
@@ -20,7 +21,18 @@ const Experience = () => {
                         4.9797350076613585,
                     ]}
                 />
-                <OrbitControls />
+                <OrbitControls
+                    enableDamping
+                    enablePan
+                    enableZoom
+                    screenSpacePanning
+                    rotateSpeed={0.15}
+                    zoomSpeed={0.5}
+                    dampingFactor={0.04}
+                    minAzimuthAngle={0}
+                    maxAzimuthAngle={Math.PI / 2}
+                    maxPolarAngle={Math.PI / 2}
+                />
 
                 <Scene />
             </Canvas>
