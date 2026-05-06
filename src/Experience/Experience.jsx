@@ -8,10 +8,11 @@ const Experience = () => {
     return (
         <>
             <Canvas
+                style={{ background: "#202025" }}
                 gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
-                    toneMapping: THREE.ACESFilmicToneMapping,
-                    toneMappingExposure: 1.5,
+                    toneMapping: THREE.NoToneMapping,
+                    // toneMappingExposure: 1.5,
                 }}
             >
                 <PerspectiveCamera
