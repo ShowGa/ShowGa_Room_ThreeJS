@@ -5,41 +5,23 @@ import * as THREE from "three";
 import { useGLTF, useTexture } from "@react-three/drei";
 
 import PictureFrames from "../component/PictureFrames";
+import BakedScene from "../component/BakedScene";
 
 export function Room(props) {
     const { nodes, materials } = useGLTF("/models/ShowGa_Room_2.glb");
     // console.log("dick");
 
-    const bakedTextureFirst = useTexture("/texture/first_texture_lightOn.webp");
-    const bakedTextureSecond = useTexture(
-        "/texture/second_texture_lightOn.webp",
-    );
-    bakedTextureFirst.flipY = false;
-    bakedTextureSecond.flipY = false;
-    bakedTextureFirst.colorSpace = THREE.SRGBColorSpace;
-    bakedTextureSecond.colorSpace = THREE.SRGBColorSpace;
-
     return (
         <group {...props} dispose={null}>
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Floor_Wood.geometry}
-                // material={nodes.Floor_Wood.material}
-                position={[-0.032, 0.068, -0.032]}
-            >
-                <meshBasicMaterial map={bakedTextureFirst} />
-            </mesh>
+            {/* ======= Baked Scene ======= */}
+            <BakedScene
+                nodes={nodes}
+                textureUrls={[
+                    "/texture/first_texture_lightOn.webp",
+                    "/texture/second_texture_lightOn.webp",
+                ]}
+            />
 
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Cube017.geometry}
-                // material={nodes.Cube017.material}
-                position={[-1.535, 0.673, -0.402]}
-            >
-                <meshBasicMaterial map={bakedTextureSecond} />
-            </mesh>
             <mesh
                 castShadow
                 receiveShadow
@@ -49,7 +31,7 @@ export function Room(props) {
                 scale={0.375}
             />
 
-            {/* ======= Picture Frame Mesh ======= */}
+            {/* ======= Picture Frame ======= */}
             <PictureFrames
                 nodes={nodes}
                 images={[

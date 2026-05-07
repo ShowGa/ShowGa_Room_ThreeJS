@@ -3,8 +3,6 @@ import useSRGBTexture from "../../hooks/useSRGBTexture";
 const PictureFrames = ({ nodes, images }) => {
     const textures = useSRGBTexture(images, false);
 
-    console.log(nodes.Picture_Left.geometry);
-
     const frames = [
         {
             key: "left",
