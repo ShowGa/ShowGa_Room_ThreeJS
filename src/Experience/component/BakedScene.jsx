@@ -31,21 +31,21 @@ const BakedScene = ({ nodes }) => {
                 Light_1_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
 
                 Light_2_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
 
                 Spot_Light_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
             },
@@ -56,7 +56,7 @@ const BakedScene = ({ nodes }) => {
                 RGB_Desk_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 RGB_Desk_Color: "#00ffff",
@@ -64,7 +64,7 @@ const BakedScene = ({ nodes }) => {
                 RGB_MonitorBack_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 RGB_MonitorBack_Color: "#00ffff",
@@ -72,7 +72,7 @@ const BakedScene = ({ nodes }) => {
                 RGB_MovieScreen_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 RGB_MovieScreen_Color: "#00ffff",
@@ -80,7 +80,7 @@ const BakedScene = ({ nodes }) => {
                 RGB_TVDesk_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 RGB_TVDesk_Color: "#00ffff",
@@ -88,7 +88,7 @@ const BakedScene = ({ nodes }) => {
                 RGB_Hologram_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 RGB_Hologram_Color: "#00ffff",
@@ -96,7 +96,7 @@ const BakedScene = ({ nodes }) => {
                 Emission_WallEdge_1_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 Emission_WallEdge_1_Color: "#00ffff",
@@ -104,7 +104,7 @@ const BakedScene = ({ nodes }) => {
                 Emission_WallEdge_2_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 Emission_WallEdge_2_Color: "#00ffff",
@@ -112,7 +112,7 @@ const BakedScene = ({ nodes }) => {
                 Emission_Fridge_Intensity: {
                     value: 1,
                     min: 0,
-                    max: 5,
+                    max: 1,
                     step: 0.01,
                 },
                 Emission_Fridge_Color: "#00ffff",
