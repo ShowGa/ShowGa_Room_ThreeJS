@@ -42,12 +42,12 @@ const BakedScene = ({ nodes }) => {
                     step: 0.01,
                 },
 
-                Spot_Light_Intensity: {
-                    value: 1,
-                    min: 0,
-                    max: 1,
-                    step: 0.01,
-                },
+                // Spot_Light_Intensity: {
+                //     value: 1,
+                //     min: 0,
+                //     max: 1,
+                //     step: 0.01,
+                // },
             },
             { collapsed: true },
         ),

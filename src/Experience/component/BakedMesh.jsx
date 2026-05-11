@@ -44,9 +44,9 @@ const BakedMesh = ({ collection, levaControls }) => {
                 value: 1,
             },
 
-            uSpotLightIntensity: {
-                value: 1,
-            },
+            // uSpotLightIntensity: {
+            //     value: 1,
+            // },
 
             // RGB Desk
             uRGBDeskIntensity: {
@@ -130,8 +130,8 @@ const BakedMesh = ({ collection, levaControls }) => {
 
         shaderUniforms.uLight2Intensity.value = levaControls.Light_2_Intensity;
 
-        shaderUniforms.uSpotLightIntensity.value =
-            levaControls.Spot_Light_Intensity;
+        // shaderUniforms.uSpotLightIntensity.value =
+        //     levaControls.Spot_Light_Intensity;
     };
 
     const updateRGBUniform = () => {
@@ -194,7 +194,7 @@ const BakedMesh = ({ collection, levaControls }) => {
     }, [
         levaControls.Light_1_Intensity,
         levaControls.Light_2_Intensity,
-        levaControls.Spot_Light_Intensity,
+        // levaControls.Spot_Light_Intensity,
     ]);
 
     useEffect(() => {

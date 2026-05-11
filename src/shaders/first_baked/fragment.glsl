@@ -11,7 +11,7 @@ uniform sampler2D uBakedTextureRGB3;
 // Light intensities
 uniform float uLight1Intensity;
 uniform float uLight2Intensity;
-uniform float uSpotLightIntensity;
+// uniform float uSpotLightIntensity;
 
 // RGB Desk
 uniform float uRGBDeskIntensity;
@@ -51,13 +51,17 @@ void main() {
     vec3 bakedLightOffColor = texture2D(uBakedTextureLightOff, vUv).rgb;
     vec3 bakedLightMaskColor = texture2D(uBakedTextureLightMask, vUv).rgb;
 
+    // =========== Calculating Light =========== //
+
     // light mask normalize weight
-    float totalWeight = bakedLightMaskColor.r + bakedLightMaskColor.g + bakedLightMaskColor.b + 0.05;
+    float totalWeight = max(
+        bakedLightMaskColor.r + bakedLightMaskColor.g,
+        0.0001 // avoid division by zero
+    );
 
     float mixValue = (
         bakedLightMaskColor.r * uLight1Intensity + 
-        bakedLightMaskColor.g * uLight2Intensity +
-        bakedLightMaskColor.b * uSpotLightIntensity
+        bakedLightMaskColor.g * uLight2Intensity
     ) / totalWeight;
     
     vec3 color = mix(bakedLightOffColor, bakedLightOnColor, mixValue);
