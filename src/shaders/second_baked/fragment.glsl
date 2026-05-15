@@ -34,12 +34,12 @@ uniform float uRGBHologramIntensity;
 uniform vec3 uRGBHologramColor;
 
 // Emission Wall Edge 1
-uniform float uEmissionWallEdge1Intensity;
-uniform vec3 uEmissionWallEdge1Color;
+uniform float uEmissionWallEdgeIntensity;
+uniform vec3 uEmissionWallEdgeColor;
 
 // Emission Wall Edge 2
-uniform float uEmissionWallEdge2Intensity;
-uniform vec3 uEmissionWallEdge2Color;
+// uniform float uEmissionWallEdge2Intensity;
+// uniform vec3 uEmissionWallEdge2Color;
 
 // Emission Fridge
 uniform float uEmissionFridgeIntensity;
@@ -50,6 +50,9 @@ void main() {
     vec3 bakedLightOnColor = texture2D(uBakedTextureLightOn, vUv).rgb;
     vec3 bakedLightOffColor = texture2D(uBakedTextureLightOff, vUv).rgb;
     vec3 bakedLightMaskColor = texture2D(uBakedTextureLightMask, vUv).rgb;
+    vec3 bakedRGB1MaskColor = texture2D(uBakedTextureRGB1, vUv).rgb;
+    vec3 bakedRGB2MaskColor = texture2D(uBakedTextureRGB2, vUv).rgb;
+    vec3 bakedRGB3MaskColor = texture2D(uBakedTextureRGB3, vUv).rgb;
 
     // =========== Calculating Light =========== //
 
@@ -63,13 +66,30 @@ void main() {
         bakedLightMaskColor.r * uLight1Intensity + 
         bakedLightMaskColor.g * uLight2Intensity
     ) / totalWeight;
-
+    
     vec3 color = mix(bakedLightOffColor, bakedLightOnColor, mixValue);
+
+    // =========== Calculating RGB Light =========== //
+
+    float rgbDeskStrength = bakedRGB1MaskColor.r * uRGBDeskIntensity;
+    color += uRGBDeskColor * rgbDeskStrength;
+    float rgbMonitorStrength = bakedRGB1MaskColor.g * uRGBMonitorBackIntensity;
+    color += uRGBMonitorBackColor * rgbMonitorStrength;
+    
+    float rgbMovieScreenStrength = bakedRGB2MaskColor.r * uRGBMovieScreenIntensity;
+    color += uRGBMovieScreenColor * rgbMovieScreenStrength;
+    float rgbTVDeskStrength = bakedRGB2MaskColor.g * uRGBTVDeskIntensity;
+    color += uRGBTVDeskColor * rgbTVDeskStrength;
+    float rgbHologramStrength = bakedRGB2MaskColor.b * uRGBHologramIntensity;
+    color += uRGBHologramColor * rgbHologramStrength;
+
+    float emissionWalledgeStrength = bakedRGB3MaskColor.r * uEmissionWallEdgeIntensity;
+    color += uEmissionWallEdgeColor * emissionWalledgeStrength;
+    float emissionFridgeStrength = bakedRGB3MaskColor.g * uEmissionFridgeIntensity;
+    color += uEmissionFridgeColor * emissionFridgeStrength;
 
     gl_FragColor = vec4(color, 1.0);
 
     #include <tonemapping_fragment>
     #include <colorspace_fragment>
 }
-
-// color = pow(color, vec3(1.0/2.2));

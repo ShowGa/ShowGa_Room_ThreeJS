@@ -94,22 +94,22 @@ const BakedMesh = ({ collection, levaControls }) => {
             },
 
             // Emission Wall Edge 1
-            uEmissionWallEdge1Intensity: {
+            uEmissionWallEdgeIntensity: {
                 value: 1,
             },
 
-            uEmissionWallEdge1Color: {
+            uEmissionWallEdgeColor: {
                 value: new THREE.Color("#00ffff"),
             },
 
             // Emission Wall Edge 2
-            uEmissionWallEdge2Intensity: {
-                value: 1,
-            },
+            // uEmissionWallEdge2Intensity: {
+            //     value: 1,
+            // },
 
-            uEmissionWallEdge2Color: {
-                value: new THREE.Color("#00ffff"),
-            },
+            // uEmissionWallEdge2Color: {
+            //     value: new THREE.Color("#00ffff"),
+            // },
 
             // Emission Fridge
             uEmissionFridgeIntensity: {
@@ -167,17 +167,17 @@ const BakedMesh = ({ collection, levaControls }) => {
     const updateEmissionUniform = () => {
         const shaderUniforms = materialRef.current.uniforms;
 
-        shaderUniforms.uEmissionWallEdge1Intensity.value =
-            levaControls.Emission_WallEdge_1_Intensity;
-        shaderUniforms.uEmissionWallEdge1Color.value.set(
-            levaControls.Emission_WallEdge_1_Color,
+        shaderUniforms.uEmissionWallEdgeIntensity.value =
+            levaControls.Emission_WallEdge_Intensity;
+        shaderUniforms.uEmissionWallEdgeColor.value.set(
+            levaControls.Emission_WallEdge_Color,
         );
 
-        shaderUniforms.uEmissionWallEdge2Intensity.value =
-            levaControls.Emission_WallEdge_2_Intensity;
-        shaderUniforms.uEmissionWallEdge2Color.value.set(
-            levaControls.Emission_WallEdge_2_Color,
-        );
+        // shaderUniforms.uEmissionWallEdge2Intensity.value =
+        //     levaControls.Emission_WallEdge_2_Intensity;
+        // shaderUniforms.uEmissionWallEdge2Color.value.set(
+        //     levaControls.Emission_WallEdge_2_Color,
+        // );
 
         shaderUniforms.uEmissionFridgeIntensity.value =
             levaControls.Emission_Fridge_Intensity;
@@ -221,11 +221,11 @@ const BakedMesh = ({ collection, levaControls }) => {
         if (!materialRef.current) return;
         updateEmissionUniform();
     }, [
-        levaControls.Emission_WallEdge_1_Intensity,
-        levaControls.Emission_WallEdge_1_Color,
+        levaControls.Emission_WallEdge_Intensity,
+        levaControls.Emission_WallEdge_Color,
 
-        levaControls.Emission_WallEdge_2_Intensity,
-        levaControls.Emission_WallEdge_2_Color,
+        // levaControls.Emission_WallEdge_2_Intensity,
+        // levaControls.Emission_WallEdge_2_Color,
 
         levaControls.Emission_Fridge_Intensity,
         levaControls.Emission_Fridge_Color,

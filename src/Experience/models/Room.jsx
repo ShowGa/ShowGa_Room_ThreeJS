@@ -12,14 +12,14 @@ export function Room(props) {
             {/* ======= Baked Scene ======= */}
             <BakedScene nodes={nodes} />
 
-            <mesh
+            {/* <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Fridge_Glass.geometry}
                 material={nodes.Fridge_Glass.material}
                 position={[-1.332, 0.708, 0.388]}
                 scale={0.375}
-            />
+            /> */}
 
             {/* ======= Picture Frame ======= */}
             <PictureFrames
