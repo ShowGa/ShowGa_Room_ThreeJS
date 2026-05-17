@@ -1,12 +1,4 @@
 const VideoScreenMesh = ({ vidInfo }) => {
-    // 順時針 90 度
-    // videoTexture.rotation = vidInfo.adjust.rotation;
-    // videoTexture.rotation = Math.PI / 2;
-
-    // 反轉
-    // videoTexture.repeat.x = vidInfo.adjust.repeat;
-    // videoTexture.repeat.x = -1;
-
     return (
         <mesh
             key={vidInfo.key}
