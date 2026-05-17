@@ -2,24 +2,16 @@ import { useGLTF } from "@react-three/drei";
 
 import PictureFrames from "../component/PictureFrames";
 import BakedScene from "../component/BakedScene";
+import VideoScreens from "../component/VideoScreens";
 
 export function Room(props) {
-    const { nodes, materials } = useGLTF("/models/ShowGa_Room_2.glb");
+    const { nodes, materials } = useGLTF("/models/ShowGa_Room.glb");
     // console.log("dick");
 
     return (
         <group {...props} dispose={null}>
             {/* ======= Baked Scene ======= */}
             <BakedScene nodes={nodes} />
-
-            {/* <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Fridge_Glass.geometry}
-                material={nodes.Fridge_Glass.material}
-                position={[-1.332, 0.708, 0.388]}
-                scale={0.375}
-            /> */}
 
             {/* ======= Picture Frame ======= */}
             <PictureFrames
@@ -31,29 +23,18 @@ export function Room(props) {
                 ]}
             />
 
-            <mesh
+            {/* ======= Video Screen ======= */}
+            <VideoScreens nodes={nodes} />
+
+            {/* <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.Monitor_Main.geometry}
-                material={nodes.Monitor_Main.material}
-                position={[-1.526, 0.899, -0.4]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Monitor_Side.geometry}
-                material={nodes.Monitor_Side.material}
-                position={[-1.436, 0.899, -0.889]}
-                rotation={[0, -0.493, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.MovieScreen.geometry}
-                material={nodes.MovieScreen.material}
-                position={[0.549, 1.057, -1.394]}
-                rotation={[Math.PI / 2, 0, 0]}
-            />
+                geometry={nodes.Fridge_Glass.geometry}
+                material={nodes.Fridge_Glass.material}
+                position={[-1.332, 0.708, 0.388]}
+                scale={0.375}
+            /> */}
+
             <mesh
                 castShadow
                 receiveShadow
@@ -97,3 +78,9 @@ export function Room(props) {
 }
 
 useGLTF.preload("/ShowGa_Room.glb");
+
+/*
+========= Object Data ==========
+
+
+*/
