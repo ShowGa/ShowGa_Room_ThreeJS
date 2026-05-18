@@ -1,27 +1,20 @@
-import { useVideoTexture } from "@react-three/drei";
-
 import VideoScreenMesh from "./VideoScreenMesh";
 
 const VideoScreens = ({ nodes }) => {
-    const videoTexture = useVideoTexture("/texture/xqc_desk_foot_slam.mp4");
-    videoTexture.center.set(0.5, 0.5);
-    videoTexture.rotation = Math.PI / 2;
-    videoTexture.repeat.x = -1;
-
     const videosInfo = [
         {
             key: "monitor_main",
             node: nodes.Monitor_Main,
             position: [-1.526, 0.899, -0.4],
             rotation: null,
-            videoTexture: videoTexture,
+            videoTexture: "/texture/xqc_desk_foot_slam.mp4",
         },
         {
             key: "monitor_side",
             node: nodes.Monitor_Side,
             position: [-1.436, 0.899, -0.889],
             rotation: null,
-            videoTexture: videoTexture,
+            videoTexture: "/texture/xqc_retard_dog.mp4",
         },
         // {
         //     key: "movie_screen",
