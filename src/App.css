@@ -7,4 +7,15 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    user-select: none;
+}
+
+.html-screen iframe {
+    width: 620px;
+    height: 320px;
+    border: none;
+    /* border-radius: 1rem; */
+    background-color: black;
+    pointer-events: none;
 }

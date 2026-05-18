@@ -3,6 +3,7 @@ import { useGLTF } from "@react-three/drei";
 import PictureFrames from "../component/PictureFrames";
 import BakedScene from "../component/BakedScene";
 import VideoScreens from "../component/VideoScreens";
+import IFrameScreen from "../component/IFrameScreen";
 
 export function Room(props) {
     const { nodes, materials } = useGLTF("/models/ShowGa_Room.glb");
@@ -25,6 +26,9 @@ export function Room(props) {
 
             {/* ======= Video Screen ======= */}
             <VideoScreens nodes={nodes} />
+
+            {/* ======= iframe screen ======= */}
+            <IFrameScreen />
 
             {/* <mesh
                 castShadow

@@ -23,13 +23,13 @@ const VideoScreens = ({ nodes }) => {
             rotation: null,
             videoTexture: videoTexture,
         },
-        {
-            key: "movie_screen",
-            node: nodes.MovieScreen,
-            position: [0.549, 1.057, -1.394],
-            rotation: [0, 0, Math.PI],
-            videoTexture: videoTexture,
-        },
+        // {
+        //     key: "movie_screen",
+        //     node: nodes.MovieScreen,
+        //     position: [0.549, 1.057, -1.394],
+        //     rotation: [0, 0, Math.PI],
+        //     videoTexture: videoTexture,
+        // },
     ];
 
     return videosInfo.map((vidInfo, i) => (
