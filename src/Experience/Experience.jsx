@@ -17,7 +17,7 @@ const Experience = () => {
                     // toneMappingExposure: 1.5,
                 }}
             >
-                <PerspectiveCamera makeDefault position={[3.94, 1.5, 3.0]} />
+                <PerspectiveCamera makeDefault position={[2.94, 1.5, 3.0]} />
 
                 <Controls />
 
