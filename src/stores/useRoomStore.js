@@ -1,11 +1,11 @@
 import { create } from "zustand";
 
 export const useRoomStore = create((set) => ({
-    isScreenFocus: false,
+    focusObj: null,
 
-    toggleScreenFocus: () => {
-        set((state) => ({
-            isScreenFocus: !state.isScreenFocus,
+    setFocusObj: (obj) => {
+        set(() => ({
+            focusObj: obj,
         }));
     },
 }));

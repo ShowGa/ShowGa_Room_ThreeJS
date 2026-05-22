@@ -1,9 +1,10 @@
 import * as THREE from "three";
 
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import { PerspectiveCamera } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import Scene from "./Scene";
 import Controls from "./controls/Controls";
+import LevaPanel from "./controls/LevaPanel";
 
 const Experience = () => {
     return (
@@ -16,18 +17,14 @@ const Experience = () => {
                     // toneMappingExposure: 1.5,
                 }}
             >
-                <PerspectiveCamera
-                    makeDefault
-                    position={[
-                        5.709385543646104, 6.195849850444702,
-                        4.9797350076613585,
-                    ]}
-                />
+                <PerspectiveCamera makeDefault position={[3.94, 1.5, 3.0]} />
 
                 <Controls />
 
                 <Scene />
             </Canvas>
+
+            <LevaPanel />
         </>
     );
 };

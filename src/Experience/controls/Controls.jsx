@@ -1,8 +1,20 @@
 import * as THREE from "three";
 
 import { OrbitControls } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useRoomStore } from "../../stores/useRoomStore";
+
+// Constants data
+import { objectFocusData } from "../../constants/objectFocusData";
 
 const Controls = () => {
+    const controlRef = useRef();
+    const isTransitioning = useRef(false);
+    const { camera } = useThree();
+    const focusObj = useRoomStore((state) => state.focusObj);
+
+    // limit the pan movement
     const minPan = new THREE.Vector3(-1, 0, -1);
     const maxPan = new THREE.Vector3(1, 0.5, 1);
 
@@ -28,20 +40,64 @@ const Controls = () => {
         );
     };
 
+    // camera focus feature
+    const desiredCameraPos = useRef(new THREE.Vector3());
+    const desiredCameraTargetPos = useRef(new THREE.Vector3());
+
+    useEffect(() => {
+        if (!focusObj) return;
+
+        desiredCameraPos.current.copy(objectFocusData[focusObj].cameraPos);
+        desiredCameraTargetPos.current.copy(
+            objectFocusData[focusObj].cameraTargetPos,
+        );
+
+        isTransitioning.current = true;
+    }, [focusObj]);
+
+    useFrame((_, delta) => {
+        if (!isTransitioning.current) return;
+
+        camera.position.lerp(desiredCameraPos.current, 2 * delta);
+
+        controlRef.current.target.lerp(
+            desiredCameraTargetPos.current,
+            2 * delta,
+        );
+
+        // check if the camera and target are close to desired position then change isTransitioning state
+        const cameraDistance = camera.position.distanceTo(
+            desiredCameraPos.current,
+        );
+
+        const targetDistance = controlRef.current.target.distanceTo(
+            desiredCameraTargetPos.current,
+        );
+
+        if (cameraDistance < 0.02 && targetDistance < 0.02) {
+            isTransitioning.current = false;
+        }
+
+        controlRef.current.update();
+    });
+
     return (
-        <OrbitControls
-            enableDamping
-            enablePan
-            enableZoom
-            screenSpacePanning
-            rotateSpeed={0.15}
-            zoomSpeed={0.5}
-            dampingFactor={0.04}
-            minAzimuthAngle={0}
-            maxAzimuthAngle={Math.PI / 2}
-            maxPolarAngle={Math.PI / 2}
-            onChange={handleControlChange}
-        />
+        <>
+            <OrbitControls
+                ref={controlRef}
+                enableDamping
+                enablePan
+                enableZoom
+                screenSpacePanning
+                rotateSpeed={0.15}
+                zoomSpeed={0.5}
+                dampingFactor={0.04}
+                minAzimuthAngle={0}
+                maxAzimuthAngle={Math.PI / 2}
+                maxPolarAngle={Math.PI / 2}
+                onChange={handleControlChange}
+            />
+        </>
     );
 };
 
