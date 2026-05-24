@@ -4,6 +4,7 @@ import PictureFrames from "../component/PictureFrames";
 import BakedScene from "../component/BakedScene";
 import VideoScreens from "../component/VideoScreens";
 import IFrameScreen from "../component/IFrameScreen";
+import Hologram from "../component/Hologram";
 
 export function Room(props) {
     const { nodes, materials } = useGLTF("/models/ShowGa_Room.glb");
@@ -39,6 +40,7 @@ export function Room(props) {
                 scale={0.375}
             /> */}
 
+            <Hologram />
             <mesh
                 castShadow
                 receiveShadow
