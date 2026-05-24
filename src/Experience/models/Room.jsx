@@ -40,7 +40,9 @@ export function Room(props) {
                 scale={0.375}
             /> */}
 
+            {/* ======= Hologram ======= */}
             <Hologram />
+
             <mesh
                 castShadow
                 receiveShadow
