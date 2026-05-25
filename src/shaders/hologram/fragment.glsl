@@ -1,5 +1,5 @@
 uniform float uTime;
-// uniform vec3 uColor;
+uniform vec3 uColor;
 
 varying vec3 vPosition;
 varying vec3 vNormal;
@@ -56,7 +56,7 @@ void main() {
     holographic += fresnel * 1.25;
     holographic *= falloff;
 
-    gl_FragColor = vec4(vPosition, holographic);
+    gl_FragColor = vec4(uColor, holographic);
 
     // ================= //
     // Threejs include chunks

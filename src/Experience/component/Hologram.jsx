@@ -1,6 +1,6 @@
 import * as THREE from "three";
 
-import { useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
@@ -8,12 +8,14 @@ import { useControls } from "leva";
 // shader
 import hologramVertexShader from "../../shaders/hologram/vertex.glsl";
 import hologramFragmentShader from "../../shaders/hologram/fragment.glsl";
+import { useRGBColorStore } from "../../stores/useRGBColorStore";
 
 const MODEL_PATH = {
     suzanne: { path: "/models/suzanne.glb", modelName: "Suzanne" },
 };
 
 const Hologram = () => {
+    // leva
     const { Model } = useControls("Choose hologram model", {
         Model: {
             value: "suzanne",
@@ -23,10 +25,28 @@ const Hologram = () => {
         },
     });
 
+    // ref
     const meshRef = useRef();
     const materialRef = useRef();
 
     const { nodes } = useGLTF(MODEL_PATH[Model].path);
+
+    const hologramRGB = useRGBColorStore((state) => state.hologramRGB);
+
+    const uniforms = useMemo(
+        () => ({
+            uTime: { value: 0 },
+            uColor: { value: new THREE.Color("#ffffff") },
+        }),
+        [],
+    );
+
+    // function
+    const updateColorUniform = () => {
+        const shaderUniform = materialRef.current.uniforms;
+
+        shaderUniform.uColor.value.set(hologramRGB);
+    };
 
     useFrame((state, delta) => {
         if (materialRef.current) {
@@ -37,6 +57,12 @@ const Hologram = () => {
             meshRef.current.rotation.y += delta;
         }
     });
+
+    useEffect(() => {
+        if (!materialRef.current) return;
+
+        updateColorUniform();
+    }, [hologramRGB]);
 
     return (
         <mesh
@@ -53,9 +79,7 @@ const Hologram = () => {
                 depthWrite={false}
                 blending={THREE.AdditiveBlending}
                 side={THREE.DoubleSide}
-                uniforms={{
-                    uTime: { value: 0 },
-                }}
+                uniforms={uniforms}
             />
         </mesh>
     );

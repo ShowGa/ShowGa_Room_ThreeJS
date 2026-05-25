@@ -5,6 +5,7 @@ import firstFragmentShader from "../../shaders/first_baked/fragment.glsl";
 import secondVertexShader from "../../shaders/second_baked/vertex.glsl";
 import secondFragmentShader from "../../shaders/second_baked/fragment.glsl";
 import BakedMesh from "./BakedMesh";
+import { useRGBColorStore } from "../../stores/useRGBColorStore";
 
 const firstBakedTextureUrls = [
     "/texture/first_texture_lightOn.webp",
@@ -24,6 +25,8 @@ const secondBakedTextureUrls = [
 ];
 
 const BakedScene = ({ nodes }) => {
+    const setHologramRGB = useRGBColorStore((state) => state.setHologramRGB);
+
     // leva panel : controlling room variable (for all of the materials uniform)
     const levaControls = useControls("Control Panel", {
         Light: folder(
@@ -91,7 +94,12 @@ const BakedScene = ({ nodes }) => {
                     max: 1,
                     step: 0.01,
                 },
-                RGB_Hologram_Color: "#00ffff",
+                RGB_Hologram_Color: {
+                    value: "#ffffff",
+                    onChange: (v) => {
+                        setHologramRGB(v);
+                    },
+                },
 
                 Emission_WallEdge_Intensity: {
                     value: 0,
