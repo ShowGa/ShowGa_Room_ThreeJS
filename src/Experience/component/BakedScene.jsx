@@ -26,6 +26,8 @@ const secondBakedTextureUrls = [
 
 const BakedScene = ({ nodes }) => {
     const setHologramRGB = useRGBColorStore((state) => state.setHologramRGB);
+    const setFridgeRGB = useRGBColorStore((state) => state.setFridgeRGB);
+    const setWallEdgeRGB = useRGBColorStore((state) => state.setWallEdgeRGB);
 
     // leva panel : controlling room variable (for all of the materials uniform)
     const levaControls = useControls("Control Panel", {
@@ -107,7 +109,12 @@ const BakedScene = ({ nodes }) => {
                     max: 1,
                     step: 0.01,
                 },
-                Emission_WallEdge_Color: "#00ffff",
+                Emission_WallEdge_Color: {
+                    value: "#ffffff",
+                    onChange: (v) => {
+                        setWallEdgeRGB(v);
+                    },
+                },
 
                 // Emission_WallEdge_2_Intensity: {
                 //     value: 1,
@@ -123,7 +130,12 @@ const BakedScene = ({ nodes }) => {
                     max: 1,
                     step: 0.01,
                 },
-                Emission_Fridge_Color: "#00ffff",
+                Emission_Fridge_Color: {
+                    value: "#ffffff",
+                    onChange: (v) => {
+                        setFridgeRGB(v);
+                    },
+                },
             },
             { collapsed: true },
         ),
