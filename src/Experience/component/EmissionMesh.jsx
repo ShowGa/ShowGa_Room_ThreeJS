@@ -1,20 +1,33 @@
-import vertexShader from "../../shaders/emission-ish/vertex.glsl";
-import fragmentShader from "../../shaders/emission-ish/fragment.glsl";
+import * as THREE from "three";
+
+import { useEffect, useRef } from "react";
 
 const EmissionMesh = ({ objData }) => {
+    const materialRef = useRef();
+
+    useEffect(() => {
+        materialRef.current?.emissive.set(objData.colorState);
+    }, [objData.colorState]);
+
     return (
         <mesh
-            key={objData.key}
             geometry={objData.node.geometry}
             position={objData.position}
-            rotation={objData.rotation ? objData.rotation : [0, 0, 0]}
+            rotation={objData.rotation || [0, 0, 0]}
         >
-            <shaderMaterial
-                vertexShader={vertexShader}
-                fragmentShader={fragmentShader}
+            <meshStandardMaterial
+                ref={materialRef}
+                emissiveIntensity={8}
+                toneMapped={false}
             />
         </mesh>
     );
 };
 
 export default EmissionMesh;
+
+/*
+(1, 0, 0)導致emissiveIntensity沒效果
+
+
+*/

@@ -13,8 +13,8 @@ const Experience = () => {
                 style={{ background: "#202025" }}
                 gl={{
                     outputColorSpace: THREE.SRGBColorSpace,
-                    toneMapping: THREE.NoToneMapping,
-                    // toneMappingExposure: 1.5,
+                    toneMapping: THREE.ACESFilmicToneMapping,
+                    toneMappingExposure: 1,
                 }}
             >
                 <PerspectiveCamera makeDefault position={[2.94, 1.5, 3.0]} />

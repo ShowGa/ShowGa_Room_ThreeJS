@@ -1,36 +1,39 @@
+import { useRGBColorStore } from "../../stores/useRGBColorStore";
 import EmissionMesh from "./EmissionMesh";
 
 const Emission = ({ nodes }) => {
+    const hologramRGB = useRGBColorStore((state) => state.hologramRGB);
+    const fridgeRGB = useRGBColorStore((state) => state.fridgeRGB);
+    const wallEdgeRGB = useRGBColorStore((state) => state.wallEdgeRGB);
+
     const emissionObjsData = [
         {
             key: "hologramProjector_emission",
             position: [0.566, 0.386, -0.059],
             rotation: null,
             node: nodes.HologramProjector_Emission,
-        },
-        {
-            key: "emission_keyboard",
-            position: [-1.267, 0.607, -0.352],
-            rotation: [0, -Math.PI / 6, Math.PI / 2],
-            node: nodes.Emission_Keyboard,
+            colorState: hologramRGB,
         },
         {
             key: "emission_fridge",
             position: [-1.354, 0.708, 0.388],
             rotation: null,
             node: nodes.Emission_Fridge,
+            colorState: fridgeRGB,
         },
         {
             key: "emission_wallEdge_1",
             position: [0.032, 1.069, -1.498],
             rotation: [-Math.PI / 2, -Math.PI / 2, 0],
             node: nodes.Emission_WallEdge_1,
+            colorState: wallEdgeRGB,
         },
         {
-            key: null,
+            key: "emission_wallEdge_2",
             position: [-1.748, 1.069, -0.032],
             rotation: [0, 0, Math.PI / 2],
             node: nodes.Emission_WallEdge_2,
+            colorState: wallEdgeRGB,
         },
     ];
 
