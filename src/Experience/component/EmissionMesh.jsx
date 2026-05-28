@@ -1,5 +1,3 @@
-import * as THREE from "three";
-
 import { useEffect, useRef } from "react";
 
 const EmissionMesh = ({ objData }) => {
@@ -17,7 +15,7 @@ const EmissionMesh = ({ objData }) => {
         >
             <meshStandardMaterial
                 ref={materialRef}
-                emissiveIntensity={8}
+                emissiveIntensity={3}
                 toneMapped={false}
             />
         </mesh>
