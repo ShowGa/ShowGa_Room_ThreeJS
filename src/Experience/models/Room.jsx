@@ -6,6 +6,7 @@ import VideoScreens from "../component/VideoScreens";
 import IFrameScreen from "../component/IFrameScreen";
 import Hologram from "../component/Hologram";
 import Emission from "../component/Emission";
+import RainbowRGBMesh from "../component/RainbowRGBMesh";
 
 export function Room(props) {
     const { nodes, materials } = useGLTF("/models/ShowGa_Room.glb");
@@ -46,6 +47,9 @@ export function Room(props) {
 
             {/* ======= Emission Mesh ======= */}
             <Emission nodes={nodes} />
+
+            {/* ======= RainbowRGB Mesh ======= */}
+            <RainbowRGBMesh nodes={nodes} />
         </group>
     );
 }
