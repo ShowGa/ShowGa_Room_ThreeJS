@@ -7,6 +7,7 @@ import IFrameScreen from "../component/IFrameScreen";
 import Hologram from "../component/Hologram";
 import Emission from "../component/Emission";
 import RainbowRGBMesh from "../component/RainbowRGBMesh";
+import GlassMesh from "../component/GlassMesh";
 
 export function Room(props) {
     const { nodes, materials } = useGLTF("/models/ShowGa_Room.glb");
@@ -33,14 +34,8 @@ export function Room(props) {
             {/* ======= iframe screen ======= */}
             <IFrameScreen />
 
-            {/* <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Fridge_Glass.geometry}
-                material={nodes.Fridge_Glass.material}
-                position={[-1.332, 0.708, 0.388]}
-                scale={0.375}
-            /> */}
+            {/* ======= Fridge Glass ======= */}
+            {/* <GlassMesh nodes={nodes} /> */}
 
             {/* ======= Hologram ======= */}
             <Hologram />
