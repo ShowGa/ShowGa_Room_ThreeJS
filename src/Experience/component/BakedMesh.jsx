@@ -7,6 +7,10 @@ const BakedMesh = ({ collection, levaControls }) => {
     const materialRef = useRef();
 
     const bakedTextures = useSRGBTexture(collection.bakedTextureUrls, false);
+    const lightMaskTextures = useSRGBTexture(
+        collection.lightMaskTextureUrls,
+        false,
+    );
 
     const uniforms = useMemo(
         () => ({
@@ -20,19 +24,27 @@ const BakedMesh = ({ collection, levaControls }) => {
             },
 
             uBakedTextureLightMask: {
-                value: bakedTextures[2],
+                value: lightMaskTextures[0],
             },
 
             uBakedTextureRGB1: {
-                value: bakedTextures[3],
+                value: lightMaskTextures[1],
             },
 
             uBakedTextureRGB2: {
-                value: bakedTextures[4],
+                value: lightMaskTextures[2],
             },
 
             uBakedTextureRGB3: {
-                value: bakedTextures[5],
+                value: lightMaskTextures[3],
+            },
+
+            uBakedTextureRGB4: {
+                value: lightMaskTextures[4],
+            },
+
+            uBakedTextureRGB5: {
+                value: lightMaskTextures[5],
             },
 
             // light intensity
@@ -44,44 +56,22 @@ const BakedMesh = ({ collection, levaControls }) => {
                 value: 1,
             },
 
-            // uSpotLightIntensity: {
-            //     value: 1,
-            // },
-
-            // RGB Desk
-            uRGBDeskIntensity: {
+            // RGB Desk and monitor
+            uRGBPcDeskIntensity: {
                 value: 1,
             },
 
-            uRGBDeskColor: {
-                value: new THREE.Color("#00ffff"),
-            },
-
-            // RGB Monitor Back
-            uRGBMonitorBackIntensity: {
-                value: 1,
-            },
-
-            uRGBMonitorBackColor: {
-                value: new THREE.Color("#00ffff"),
+            uRGBPcDeskColor: {
+                value: new THREE.Color("#ffffff"),
             },
 
             // RGB Movie Screen
-            uRGBMovieScreenIntensity: {
+            uRGBMovieScreenAndTvDeskIntensity: {
                 value: 1,
             },
 
-            uRGBMovieScreenColor: {
-                value: new THREE.Color("#00ffff"),
-            },
-
-            // RGB TV Desk
-            uRGBTVDeskIntensity: {
-                value: 1,
-            },
-
-            uRGBTVDeskColor: {
-                value: new THREE.Color("#00ffff"),
+            uRGBMovieScreenAndTvDeskColor: {
+                value: new THREE.Color("#ffffff"),
             },
 
             // RGB Hologram
@@ -90,26 +80,17 @@ const BakedMesh = ({ collection, levaControls }) => {
             },
 
             uRGBHologramColor: {
-                value: new THREE.Color("#00ffff"),
+                value: new THREE.Color("#ffffff"),
             },
 
-            // Emission Wall Edge 1
+            // Emission Wall Edge
             uEmissionWallEdgeIntensity: {
                 value: 1,
             },
 
             uEmissionWallEdgeColor: {
-                value: new THREE.Color("#00ffff"),
+                value: new THREE.Color("#ffffff"),
             },
-
-            // Emission Wall Edge 2
-            // uEmissionWallEdge2Intensity: {
-            //     value: 1,
-            // },
-
-            // uEmissionWallEdge2Color: {
-            //     value: new THREE.Color("#00ffff"),
-            // },
 
             // Emission Fridge
             uEmissionFridgeIntensity: {
@@ -117,7 +98,7 @@ const BakedMesh = ({ collection, levaControls }) => {
             },
 
             uEmissionFridgeColor: {
-                value: new THREE.Color("#00ffff"),
+                value: new THREE.Color("#ffffff"),
             },
         }),
         [bakedTextures],
@@ -137,25 +118,17 @@ const BakedMesh = ({ collection, levaControls }) => {
     const updateRGBUniform = () => {
         const shaderUniforms = materialRef.current.uniforms;
 
-        shaderUniforms.uRGBDeskIntensity.value =
-            levaControls.RGB_Desk_Intensity;
-        shaderUniforms.uRGBDeskColor.value.set(levaControls.RGB_Desk_Color);
-
-        shaderUniforms.uRGBMonitorBackIntensity.value =
-            levaControls.RGB_MonitorBack_Intensity;
-        shaderUniforms.uRGBMonitorBackColor.value.set(
-            levaControls.RGB_MonitorBack_Color,
+        shaderUniforms.uRGBPcDeskIntensity.value =
+            levaControls.RGB_Pc_Desk_Intensity;
+        shaderUniforms.uRGBPcDeskColor.value.set(
+            levaControls.RGB_Pc_Desk_Color,
         );
 
-        shaderUniforms.uRGBMovieScreenIntensity.value =
-            levaControls.RGB_MovieScreen_Intensity;
-        shaderUniforms.uRGBMovieScreenColor.value.set(
-            levaControls.RGB_MovieScreen_Color,
+        shaderUniforms.uRGBMovieScreenAndTvDeskIntensity.value =
+            levaControls.RGB_MovieScreen_And_TVDesk_Intensity;
+        shaderUniforms.uRGBMovieScreenAndTvDeskColor.value.set(
+            levaControls.RGB_MovieScreen_And_TVDesk_Color,
         );
-
-        shaderUniforms.uRGBTVDeskIntensity.value =
-            levaControls.RGB_TVDesk_Intensity;
-        shaderUniforms.uRGBTVDeskColor.value.set(levaControls.RGB_TVDesk_Color);
 
         shaderUniforms.uRGBHologramIntensity.value =
             levaControls.RGB_Hologram_Intensity;
@@ -172,12 +145,6 @@ const BakedMesh = ({ collection, levaControls }) => {
         shaderUniforms.uEmissionWallEdgeColor.value.set(
             levaControls.Emission_WallEdge_Color,
         );
-
-        // shaderUniforms.uEmissionWallEdge2Intensity.value =
-        //     levaControls.Emission_WallEdge_2_Intensity;
-        // shaderUniforms.uEmissionWallEdge2Color.value.set(
-        //     levaControls.Emission_WallEdge_2_Color,
-        // );
 
         shaderUniforms.uEmissionFridgeIntensity.value =
             levaControls.Emission_Fridge_Intensity;
@@ -201,17 +168,11 @@ const BakedMesh = ({ collection, levaControls }) => {
         if (!materialRef.current) return;
         updateRGBUniform();
     }, [
-        levaControls.RGB_Desk_Intensity,
-        levaControls.RGB_Desk_Color,
+        levaControls.RGB_Pc_Desk_Intensity,
+        levaControls.RGB_Pc_Desk_Color,
 
-        levaControls.RGB_MonitorBack_Intensity,
-        levaControls.RGB_MonitorBack_Color,
-
-        levaControls.RGB_MovieScreen_Intensity,
-        levaControls.RGB_MovieScreen_Color,
-
-        levaControls.RGB_TVDesk_Intensity,
-        levaControls.RGB_TVDesk_Color,
+        levaControls.RGB_MovieScreen_And_TVDesk_Intensity,
+        levaControls.RGB_MovieScreen_And_TVDesk_Color,
 
         levaControls.RGB_Hologram_Intensity,
         levaControls.RGB_Hologram_Color,

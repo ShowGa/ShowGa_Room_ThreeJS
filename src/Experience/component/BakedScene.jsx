@@ -10,10 +10,14 @@ import { useRGBColorStore } from "../../stores/useRGBColorStore";
 const firstBakedTextureUrls = [
     "/texture/first_texture_lightOn.webp",
     "/texture/first_texture_lightOff.webp",
+];
+const firstLightMaskTextureUrls = [
     "/texture/first_texture_light_mask.webp",
     "/texture/first_texture_RGB_1.webp",
     "/texture/first_texture_RGB_2.webp",
     "/texture/first_texture_RGB_3.webp",
+    "/texture/first_texture_RGB_4.webp",
+    "/texture/first_texture_RGB_5.webp",
 ];
 const secondBakedTextureUrls = [
     "/texture/second_texture_lightOn.webp",
@@ -58,37 +62,21 @@ const BakedScene = ({ nodes }) => {
         ),
         RGB: folder(
             {
-                RGB_Desk_Intensity: {
+                RGB_Pc_Desk_Intensity: {
                     value: 0,
                     min: 0,
                     max: 1,
                     step: 0.01,
                 },
-                RGB_Desk_Color: "#00ffff",
+                RGB_Pc_Desk_Color: "#ffffff",
 
-                RGB_MonitorBack_Intensity: {
+                RGB_MovieScreen_And_TVDesk_Intensity: {
                     value: 0,
                     min: 0,
                     max: 1,
                     step: 0.01,
                 },
-                RGB_MonitorBack_Color: "#00ffff",
-
-                RGB_MovieScreen_Intensity: {
-                    value: 0,
-                    min: 0,
-                    max: 1,
-                    step: 0.01,
-                },
-                RGB_MovieScreen_Color: "#00ffff",
-
-                RGB_TVDesk_Intensity: {
-                    value: 0,
-                    min: 0,
-                    max: 1,
-                    step: 0.01,
-                },
-                RGB_TVDesk_Color: "#00ffff",
+                RGB_MovieScreen_And_TVDesk_Color: "#ffffff",
 
                 RGB_Hologram_Intensity: {
                     value: 0,
@@ -116,14 +104,6 @@ const BakedScene = ({ nodes }) => {
                     },
                 },
 
-                // Emission_WallEdge_2_Intensity: {
-                //     value: 1,
-                //     min: 0,
-                //     max: 1,
-                //     step: 0.01,
-                // },
-                // Emission_WallEdge_2_Color: "#00ffff",
-
                 Emission_Fridge_Intensity: {
                     value: 0,
                     min: 0,
@@ -150,15 +130,17 @@ const BakedScene = ({ nodes }) => {
             vertexShader: firstVertexShader,
             fragmentShader: firstFragmentShader,
             bakedTextureUrls: firstBakedTextureUrls,
+            lightMaskTextureUrls: firstLightMaskTextureUrls,
         },
-        {
-            key: "second_collection",
-            node: nodes.Cube017,
-            position: [-1.535, 0.673, -0.402],
-            vertexShader: secondVertexShader,
-            fragmentShader: secondFragmentShader,
-            bakedTextureUrls: secondBakedTextureUrls,
-        },
+        // {
+        //     key: "second_collection",
+        //     node: nodes.Cube017,
+        //     position: [-1.535, 0.673, -0.402],
+        //     vertexShader: secondVertexShader,
+        //     fragmentShader: secondFragmentShader,
+        //     bakedTextureUrls: secondBakedTextureUrls,
+        //     lightMaskTextureUrls: null,
+        // },
     ];
 
     return collections.map((collection, i) => (
