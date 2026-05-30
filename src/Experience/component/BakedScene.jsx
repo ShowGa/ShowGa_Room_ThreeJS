@@ -27,6 +27,14 @@ const secondBakedTextureUrls = [
     "/texture/second_texture_RGB_2.webp",
     "/texture/second_texture_RGB_3.webp",
 ];
+const secondLightMaskTextureUrls = [
+    "/texture/second_texture_light_mask.webp",
+    "/texture/second_texture_RGB_1.webp",
+    "/texture/second_texture_RGB_2.webp",
+    "/texture/second_texture_RGB_3.webp",
+    "/texture/second_texture_RGB_4_customization.webp",
+    "/texture/second_texture_RGB_5.webp",
+];
 
 const BakedScene = ({ nodes }) => {
     const setHologramRGB = useRGBColorStore((state) => state.setHologramRGB);
@@ -132,15 +140,16 @@ const BakedScene = ({ nodes }) => {
             bakedTextureUrls: firstBakedTextureUrls,
             lightMaskTextureUrls: firstLightMaskTextureUrls,
         },
-        // {
-        //     key: "second_collection",
-        //     node: nodes.Cube017,
-        //     position: [-1.535, 0.673, -0.402],
-        //     vertexShader: secondVertexShader,
-        //     fragmentShader: secondFragmentShader,
-        //     bakedTextureUrls: secondBakedTextureUrls,
-        //     lightMaskTextureUrls: null,
-        // },
+        {
+            key: "second_collection",
+            node: nodes.Cube017,
+            position: [-1.535, 0.673, -0.402],
+            vertexShader: secondVertexShader,
+            fragmentShader: secondFragmentShader,
+            bakedTextureUrls: secondBakedTextureUrls,
+            lightMaskTextureUrls: null,
+            lightMaskTextureUrls: secondLightMaskTextureUrls,
+        },
     ];
 
     return collections.map((collection, i) => (
