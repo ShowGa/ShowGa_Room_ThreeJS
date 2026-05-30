@@ -2,6 +2,7 @@ import * as THREE from "three";
 
 import { useMemo, useRef, useEffect } from "react";
 import useSRGBTexture from "../../hooks/useSRGBTexture";
+import { useRGBColorStore } from "../../stores/useRGBColorStore";
 
 const BakedMesh = ({ collection, levaControls }) => {
     const materialRef = useRef();
@@ -11,6 +12,10 @@ const BakedMesh = ({ collection, levaControls }) => {
         collection.lightMaskTextureUrls,
         false,
     );
+
+    const hologramRGB = useRGBColorStore((state) => state.hologramRGB);
+    const fridgeRGB = useRGBColorStore((state) => state.fridgeRGB);
+    const wallEdgeRGB = useRGBColorStore((state) => state.wallEdgeRGB);
 
     const uniforms = useMemo(
         () => ({
@@ -132,9 +137,7 @@ const BakedMesh = ({ collection, levaControls }) => {
 
         shaderUniforms.uRGBHologramIntensity.value =
             levaControls.RGB_Hologram_Intensity;
-        shaderUniforms.uRGBHologramColor.value.set(
-            levaControls.RGB_Hologram_Color,
-        );
+        shaderUniforms.uRGBHologramColor.value.set(hologramRGB);
     };
 
     const updateEmissionUniform = () => {
@@ -142,15 +145,11 @@ const BakedMesh = ({ collection, levaControls }) => {
 
         shaderUniforms.uEmissionWallEdgeIntensity.value =
             levaControls.Emission_WallEdge_Intensity;
-        shaderUniforms.uEmissionWallEdgeColor.value.set(
-            levaControls.Emission_WallEdge_Color,
-        );
+        shaderUniforms.uEmissionWallEdgeColor.value.set(wallEdgeRGB);
 
         shaderUniforms.uEmissionFridgeIntensity.value =
             levaControls.Emission_Fridge_Intensity;
-        shaderUniforms.uEmissionFridgeColor.value.set(
-            levaControls.Emission_Fridge_Color,
-        );
+        shaderUniforms.uEmissionFridgeColor.value.set(fridgeRGB);
     };
 
     // Leva -> uniforms (update material uniforms)
@@ -175,7 +174,7 @@ const BakedMesh = ({ collection, levaControls }) => {
         levaControls.RGB_MovieScreen_And_TVDesk_Color,
 
         levaControls.RGB_Hologram_Intensity,
-        levaControls.RGB_Hologram_Color,
+        hologramRGB,
     ]);
 
     useEffect(() => {
@@ -183,13 +182,13 @@ const BakedMesh = ({ collection, levaControls }) => {
         updateEmissionUniform();
     }, [
         levaControls.Emission_WallEdge_Intensity,
-        levaControls.Emission_WallEdge_Color,
+        wallEdgeRGB,
 
         // levaControls.Emission_WallEdge_2_Intensity,
         // levaControls.Emission_WallEdge_2_Color,
 
         levaControls.Emission_Fridge_Intensity,
-        levaControls.Emission_Fridge_Color,
+        fridgeRGB,
     ]);
 
     return (
