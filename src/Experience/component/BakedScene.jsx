@@ -88,8 +88,8 @@ const BakedScene = ({ nodes }) => {
 
                 RGB_Hologram_Intensity: {
                     value: 0,
-                    min: 0,
-                    max: 1,
+                    min: 0.2,
+                    max: 0.4,
                     step: 0.01,
                 },
                 RGB_Hologram_Color: {
@@ -101,7 +101,7 @@ const BakedScene = ({ nodes }) => {
 
                 Emission_WallEdge_Intensity: {
                     value: 0,
-                    min: 0,
+                    min: 0.2,
                     max: 1,
                     step: 0.01,
                 },
@@ -114,7 +114,7 @@ const BakedScene = ({ nodes }) => {
 
                 Emission_Fridge_Intensity: {
                     value: 0,
-                    min: 0,
+                    min: 0.2,
                     max: 1,
                     step: 0.01,
                 },
