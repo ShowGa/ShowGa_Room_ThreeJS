@@ -7,14 +7,14 @@ const VideoScreens = ({ nodes }) => {
             node: nodes.Monitor_Main,
             position: [-1.526, 0.899, -0.4],
             rotation: null,
-            videoTexture: "/texture/xqc_desk_foot_slam.mp4",
+            videoTexture: "/texture/xqc_desk_foot_slam_opti.mp4",
         },
         {
             key: "monitor_side",
             node: nodes.Monitor_Side,
             position: [-1.436, 0.899, -0.889],
             rotation: null,
-            videoTexture: "/texture/xqc_retard_dog.mp4",
+            videoTexture: "/texture/xqc_retard_dog_opti.mp4",
         },
         // {
         //     key: "movie_screen",
