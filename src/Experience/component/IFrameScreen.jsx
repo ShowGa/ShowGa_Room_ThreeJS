@@ -1,6 +1,9 @@
 import { Html } from "@react-three/drei";
+import { useRoomStore } from "../../stores/useRoomStore";
 
 const IFrameScreen = () => {
+    const focusObj = useRoomStore((state) => state.focusObj);
+
     return (
         <Html
             wrapperClass="html-screen"
@@ -10,6 +13,9 @@ const IFrameScreen = () => {
             position={[0.55, 1.051, -1.394]}
             zIndexRange={[1, 0]}
             scale={0.44}
+            style={{
+                pointerEvents: `${focusObj === "movie_screen" ? "" : "none"}`,
+            }}
         >
             <iframe src="https://chessing.onrender.com" />
         </Html>
