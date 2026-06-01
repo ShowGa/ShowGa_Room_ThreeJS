@@ -2,6 +2,7 @@ import { Leva, useControls } from "leva";
 
 // Leva control store
 import { useRoomStore } from "../../stores/useRoomStore";
+import { objectFocusData } from "../../constants/objectFocusData";
 
 const LevaPanel = () => {
     const setFocusObj = useRoomStore((state) => state.setFocusObj);
@@ -10,9 +11,9 @@ const LevaPanel = () => {
         Focus_Object: {
             value: "reset",
             options: {
-                PC_Monitor: "pc_monitor",
-                Movie_Screen: "movie_screen",
-                Reset_Camera: "reset",
+                PC_Monitor: objectFocusData.pc_monitor.id,
+                Movie_Screen: objectFocusData.movie_screen.id,
+                Reset_Camera: objectFocusData.reset.id,
             },
 
             onChange: (v) => {
