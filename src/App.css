@@ -12,10 +12,13 @@ body {
 }
 
 .html-screen iframe {
-    width: 620px;
-    height: 320px;
-    border: none;
+    /* width: 620px;
+    height: 320px; */
     /* border-radius: 1rem; */
+    /* pointer-events: none; */
+
+    width: 1413px;
+    height: 733px;
+    border: none;
     background-color: black;
-    pointer-events: none;
 }
