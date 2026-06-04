@@ -25,7 +25,7 @@ export default function LoadingPage() {
         gsap.to(barRef.current, {
             scaleX: progress,
             duration: 0.3,
-            ease: "power2.out",
+            ease: "power2.inOut",
 
             onComplete: () => {
                 gsap.delayedCall(1, () => {
