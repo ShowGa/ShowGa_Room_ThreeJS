@@ -19,14 +19,7 @@ export function Room(props) {
             <BakedScene nodes={nodes} />
 
             {/* ======= Picture Frame ======= */}
-            <PictureFrames
-                nodes={nodes}
-                images={[
-                    "/texture/cyberpunk2077.jpg",
-                    "/texture/overwatch.avif",
-                    "/texture/sdv.jpg",
-                ]}
-            />
+            <PictureFrames nodes={nodes} />
 
             {/* ======= Video Screen ======= */}
             <VideoScreens nodes={nodes} />

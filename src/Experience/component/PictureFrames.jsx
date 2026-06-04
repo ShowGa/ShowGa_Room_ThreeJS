@@ -1,6 +1,12 @@
 import useSRGBTexture from "../../hooks/useSRGBTexture";
 
-const PictureFrames = ({ nodes, images }) => {
+const images = [
+    "/texture/cyberpunk2077.webp",
+    "/texture/overwatch.avif",
+    "/texture/sdv.webp",
+];
+
+const PictureFrames = ({ nodes }) => {
     const textures = useSRGBTexture(images, false);
 
     const frames = [

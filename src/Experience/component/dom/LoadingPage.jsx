@@ -28,7 +28,7 @@ export default function LoadingPage() {
             ease: "power2.inOut",
 
             onComplete: () => {
-                gsap.delayedCall(1, () => {
+                gsap.delayedCall(1.3, () => {
                     setShowBar(false);
                     removeLoadingPage();
                 });
