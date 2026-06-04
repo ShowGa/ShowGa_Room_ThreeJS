@@ -2,6 +2,8 @@ import { Html } from "@react-three/drei";
 import { useRoomStore } from "../../stores/useRoomStore";
 import { objectFocusData } from "../../constants/objectFocusData";
 
+const CHESS_URL = import.meta.env.VITE_CHESS_APP_URL;
+
 const IFrameScreen = () => {
     const focusObj = useRoomStore((state) => state.focusObj);
 
@@ -18,7 +20,7 @@ const IFrameScreen = () => {
                 pointerEvents: `${focusObj === objectFocusData.movie_screen.id ? "" : "none"}`,
             }}
         >
-            <iframe src="https://chessing.onrender.com" />
+            <iframe src={CHESS_URL} />
         </Html>
     );
 };
