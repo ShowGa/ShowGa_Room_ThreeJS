@@ -20,7 +20,7 @@ const IFrameScreen = () => {
                 pointerEvents: `${focusObj === objectFocusData.movie_screen.id ? "" : "none"}`,
             }}
         >
-            <iframe src={CHESS_URL} />
+            <iframe src={CHESS_URL} allow="clipboard-read; clipboard-write" />
         </Html>
     );
 };
