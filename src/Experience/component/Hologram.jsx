@@ -11,16 +11,40 @@ import hologramFragmentShader from "../../shaders/hologram/fragment.glsl";
 import { useRGBColorStore } from "../../stores/useRGBColorStore";
 
 const MODEL_PATH = {
-    suzanne: { path: "/models/suzanne.glb", modelName: "Suzanne" },
+    suzanne: {
+        path: "/models/suzanne.glb",
+        modelName: "Suzanne",
+        scale: [0.1, 0.1, 0.1],
+        position: [0.566, 0.58, -0.059],
+    },
+    LOD3spShape: {
+        path: "/models/duck.glb",
+        modelName: "LOD3spShape",
+        scale: [0.001, 0.001, 0.001],
+        position: [0.566, 0.48, -0.059],
+    },
+    moai: {
+        path: "/models/moai.glb",
+        modelName: "moai",
+        scale: [0.0015, 0.0015, 0.0015],
+        position: [0.566, 0.54, -0.059],
+    },
 };
 
+useGLTF.preload(MODEL_PATH.suzanne.path);
+useGLTF.preload(MODEL_PATH.LOD3spShape.path);
+useGLTF.preload(MODEL_PATH.moai.path);
+
 const Hologram = () => {
+    console.log("render");
     // leva
     const { Model } = useControls("Choose hologram model", {
         Model: {
             value: "suzanne",
             options: {
                 suzanne: "suzanne",
+                moai: "moai",
+                duck: "LOD3spShape",
             },
         },
     });
@@ -29,7 +53,14 @@ const Hologram = () => {
     const meshRef = useRef();
     const materialRef = useRef();
 
-    const { nodes } = useGLTF(MODEL_PATH[Model].path);
+    const { nodes: suzanneNodes } = useGLTF(MODEL_PATH.suzanne.path);
+    const { nodes: duckNodes } = useGLTF(MODEL_PATH.LOD3spShape.path);
+    const { nodes: moaiNodes } = useGLTF(MODEL_PATH.moai.path);
+    const allNodes = {
+        suzanne: suzanneNodes,
+        LOD3spShape: duckNodes,
+        moai: moaiNodes,
+    };
 
     const hologramRGB = useRGBColorStore((state) => state.hologramRGB);
 
@@ -67,9 +98,9 @@ const Hologram = () => {
     return (
         <mesh
             ref={meshRef}
-            geometry={nodes[MODEL_PATH[Model].modelName].geometry}
-            position={[0.566, 0.58, -0.059]}
-            scale={[0.1, 0.1, 0.1]}
+            geometry={allNodes[Model][MODEL_PATH[Model].modelName].geometry}
+            position={MODEL_PATH[Model].position}
+            scale={MODEL_PATH[Model].scale}
         >
             <shaderMaterial
                 ref={materialRef}
