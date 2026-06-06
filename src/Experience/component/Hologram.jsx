@@ -56,11 +56,14 @@ const Hologram = () => {
     const { nodes: suzanneNodes } = useGLTF(MODEL_PATH.suzanne.path);
     const { nodes: duckNodes } = useGLTF(MODEL_PATH.LOD3spShape.path);
     const { nodes: moaiNodes } = useGLTF(MODEL_PATH.moai.path);
-    const allNodes = {
-        suzanne: suzanneNodes,
-        LOD3spShape: duckNodes,
-        moai: moaiNodes,
-    };
+    const allNodes = useMemo(
+        () => ({
+            suzanne: suzanneNodes,
+            LOD3spShape: duckNodes,
+            moai: moaiNodes,
+        }),
+        [suzanneNodes, duckNodes, moaiNodes],
+    );
 
     const hologramRGB = useRGBColorStore((state) => state.hologramRGB);
 
