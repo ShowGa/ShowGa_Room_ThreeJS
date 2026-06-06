@@ -66,9 +66,22 @@ Low poly風格。
 
 ## 致謝
 
-特別感謝Bruno Simon Threejs課程：
+特別感謝 Bruno Simon 的 Three.js 課程：
 
-- [Bruno Simon Threejs Course](https://threejs-journey.com)
+- Three.js Journey
+    - https://threejs-journey.com
+
+## 3D 模型授權資訊
+
+- **作品名稱**：Low Poly Moai
+- **作者**：DarkO（@DarkO_442772）
+- **來源**：https://www.printables.com/model/978643-low-poly-moai/files
+- **授權**：CC BY-NC-SA 4.0
+    - https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+### 修改內容
+
+- 轉換為 GLB 格式
 
 ---
 
@@ -142,4 +155,17 @@ Lighting, rendering, and Draw Call optimizations ensure smooth performance on mo
 
 Special thanks to Bruno Simon's Three.js course:
 
-- [Bruno Simon Three.js Journey](https://threejs-journey.com)
+- Three.js Journey
+    - https://threejs-journey.com
+
+## 3D Model Attribution
+
+- **Title**: Low Poly Moai
+- **Author**: DarkO (@DarkO_442772)
+- **Source**: https://www.printables.com/model/978643-low-poly-moai/files
+- **License**: CC BY-NC-SA 4.0
+    - https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+### Modifications
+
+- Converted to GLB format
