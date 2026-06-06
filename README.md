@@ -51,7 +51,7 @@ Low poly風格。
 
 ### 控制面板調整
 
-![image](https://raw.githubusercontent.com/ShowGa/Pic-repository/refs/heads/main/Room-Project-feature2_1.webp)
+![image](https://raw.githubusercontent.com/ShowGa/Pic-repository/refs/heads/main/Room-Project-feature2_3.webp)
 ![image](https://github.com/ShowGa/Pic-repository/blob/main/Room-Project-feature2_2.webp)
 
 ### 電影幕-連線西洋棋遊戲
@@ -60,9 +60,9 @@ Low poly風格。
 
 ## 部署資訊
 
-前端(ShowGa Room) : [Render部署服務](https://render.com)
-前端(西洋棋前端) : [Render部署服務](https://render.com)
-後端(西洋棋socket伺服器) : [Railway部署服務](https://railway.app)
+- 前端(ShowGa Room) : [Render部署服務](https://render.com)
+- 前端(西洋棋前端) : [Render部署服務](https://render.com)
+- 後端(西洋棋socket伺服器) : [Railway部署服務](https://railway.app)
 
 ## 致謝
 
@@ -125,7 +125,7 @@ Lighting, rendering, and Draw Call optimizations ensure smooth performance on mo
 
 ### Control Panel
 
-![image](https://raw.githubusercontent.com/ShowGa/Pic-repository/refs/heads/main/Room-Project-feature2_1.webp)
+![image](https://raw.githubusercontent.com/ShowGa/Pic-repository/refs/heads/main/Room-Project-feature2_3.webp)
 ![image](https://github.com/ShowGa/Pic-repository/blob/main/Room-Project-feature2_2.webp)
 
 ### Movie Screen — Online Chess Game
@@ -134,9 +134,9 @@ Lighting, rendering, and Draw Call optimizations ensure smooth performance on mo
 
 ## Deployment
 
-Frontend (ShowGa Room) : [Render](https://render.com)
-Frontend (Chess client) : [Render](https://render.com)
-Backend (Chess socket server) : [Railway](https://railway.app)
+- Frontend (ShowGa Room) : [Render](https://render.com)
+- Frontend (Chess client) : [Render](https://render.com)
+- Backend (Chess socket server) : [Railway](https://railway.app)
 
 ## Acknowledgements
 
