@@ -1,6 +1,7 @@
 import "./App.css";
 import LoadingPage from "./Experience/component/dom/LoadingPage";
 import DarkModeToggle from "./Experience/component/dom/DarkModeToggle";
+import ResetCameraButton from "./Experience/component/dom/ResetCameraButton";
 import Experience from "./Experience/Experience";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
         <>
             <LoadingPage />
             <DarkModeToggle />
+            <ResetCameraButton />
             <Experience />
         </>
     );

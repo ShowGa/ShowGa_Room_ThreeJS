@@ -13,6 +13,13 @@ export const objectFocusData = {
         cameraTargetPos: new THREE.Vector3(0.61, 0.06, -0.95),
     },
 
+    // 牆上海報(left/mid/right)共用一個視角,鏡頭從房間內側看向海報牆
+    poster: {
+        id: "poster",
+        cameraPos: new THREE.Vector3(-1.2, 1.0, -0.55),
+        cameraTargetPos: new THREE.Vector3(-1.2, 1.1, -1.4),
+    },
+
     reset: {
         id: "reset",
         cameraPos: new THREE.Vector3(2.94, 1.5, 3.0),

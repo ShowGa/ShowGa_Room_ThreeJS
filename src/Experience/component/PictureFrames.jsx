@@ -1,4 +1,5 @@
 import useSRGBTexture from "../../hooks/useSRGBTexture";
+import { useRoomStore } from "../../stores/useRoomStore";
 
 const images = [
     "/texture/cyberpunk2077.webp",
@@ -8,6 +9,13 @@ const images = [
 
 const PictureFrames = ({ nodes }) => {
     const textures = useSRGBTexture(images, false);
+    const setFocusObj = useRoomStore((state) => state.setFocusObj);
+
+    // 點選任一幅海報 → 鏡頭拉近到海報牆(三幅共用一個視角)
+    const handlePosterClick = (e) => {
+        e.stopPropagation();
+        setFocusObj("poster");
+    };
 
     const frames = [
         {
@@ -38,6 +46,13 @@ const PictureFrames = ({ nodes }) => {
             geometry={frame.node.geometry}
             position={frame.position}
             rotation={frame.rotation}
+            onClick={handlePosterClick}
+            onPointerOver={() => {
+                document.body.style.cursor = "pointer";
+            }}
+            onPointerOut={() => {
+                document.body.style.cursor = "auto";
+            }}
         >
             <meshBasicMaterial map={textures[i]} />
         </mesh>
