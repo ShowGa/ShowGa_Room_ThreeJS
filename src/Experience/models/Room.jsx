@@ -5,6 +5,7 @@ import BakedScene from "../component/BakedScene";
 import VideoScreens from "../component/VideoScreens";
 import IFrameScreen from "../component/IFrameScreen";
 import FocusHitboxes from "../component/FocusHitboxes";
+import HintBubbles from "../component/HintBubbles";
 import Hologram from "../component/Hologram";
 import Emission from "../component/Emission";
 import RainbowRGBMesh from "../component/RainbowRGBMesh";
@@ -30,6 +31,9 @@ export function Room(props) {
 
             {/* ======= Focus Hitboxes (點選螢幕切換視角) ======= */}
             <FocusHitboxes nodes={nodes} />
+
+            {/* ======= Hint Bubbles (可點擊物件的泡泡說明) ======= */}
+            <HintBubbles />
 
             {/* ======= Fridge Glass ======= */}
             {/* <GlassMesh nodes={nodes} /> */}
