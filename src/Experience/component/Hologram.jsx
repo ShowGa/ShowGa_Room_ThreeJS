@@ -35,19 +35,34 @@ useGLTF.preload(MODEL_PATH.suzanne.path);
 useGLTF.preload(MODEL_PATH.LOD3spShape.path);
 useGLTF.preload(MODEL_PATH.moai.path);
 
+// 點選切換時的循環順序(對應 MODEL_PATH 的 key)
+const MODEL_ORDER = ["suzanne", "moai", "LOD3spShape"];
+
 const Hologram = () => {
-    console.log("render");
     // leva
-    const { Model } = useControls("Choose hologram model", {
-        Model: {
-            value: "suzanne",
-            options: {
-                suzanne: "suzanne",
-                moai: "moai",
-                duck: "LOD3spShape",
+    const [{ Model }, setModelControl] = useControls(
+        "Choose hologram model",
+        () => ({
+            Model: {
+                value: "suzanne",
+                options: {
+                    suzanne: "suzanne",
+                    moai: "moai",
+                    duck: "LOD3spShape",
+                },
             },
-        },
-    });
+        }),
+    );
+
+    // 點選 hologram → 切換到下一個 model(滑鼠與手機皆透過 pointer 事件觸發)
+    const handleHologramClick = (e) => {
+        e.stopPropagation();
+
+        const currentIndex = MODEL_ORDER.indexOf(Model);
+        const nextModel = MODEL_ORDER[(currentIndex + 1) % MODEL_ORDER.length];
+
+        setModelControl({ Model: nextModel });
+    };
 
     // ref
     const meshRef = useRef();
@@ -104,6 +119,13 @@ const Hologram = () => {
             geometry={allNodes[Model][MODEL_PATH[Model].modelName].geometry}
             position={MODEL_PATH[Model].position}
             scale={MODEL_PATH[Model].scale}
+            onClick={handleHologramClick}
+            onPointerOver={() => {
+                document.body.style.cursor = "pointer";
+            }}
+            onPointerOut={() => {
+                document.body.style.cursor = "auto";
+            }}
         >
             <shaderMaterial
                 ref={materialRef}
