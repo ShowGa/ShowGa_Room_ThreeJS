@@ -8,4 +8,12 @@ export const useRoomStore = create((set) => ({
             focusObj: obj,
         }));
     },
+
+    isDarkMode: false,
+
+    toggleDarkMode: () => {
+        set((state) => ({
+            isDarkMode: !state.isDarkMode,
+        }));
+    },
 }));

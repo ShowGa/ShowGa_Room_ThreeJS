@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { folder, useControls } from "leva";
 
 import firstVertexShader from "../../shaders/first_baked/vertex.glsl";
@@ -6,6 +7,29 @@ import secondVertexShader from "../../shaders/second_baked/vertex.glsl";
 import secondFragmentShader from "../../shaders/second_baked/fragment.glsl";
 import BakedMesh from "./BakedMesh";
 import { useRGBColorStore } from "../../stores/useRGBColorStore";
+import { useRoomStore } from "../../stores/useRoomStore";
+
+// 切回 Light Mode 時恢復成初始預設值
+const LIGHT_MODE_PRESET = {
+    Light_1_Intensity: 1,
+    Light_2_Intensity: 1,
+    RGB_Pc_Desk_Intensity: 0,
+    RGB_MovieScreen_And_TVDesk_Intensity: 0,
+    RGB_Hologram_Intensity: 0,
+    Emission_WallEdge_Intensity: 0,
+    Emission_Fridge_Intensity: 0,
+};
+
+// 切到 Dark Mode 時套用的數值
+const DARK_MODE_PRESET = {
+    Light_1_Intensity: 0,
+    Light_2_Intensity: 0,
+    RGB_Pc_Desk_Intensity: 1,
+    RGB_MovieScreen_And_TVDesk_Intensity: 1,
+    RGB_Hologram_Intensity: 0.4,
+    Emission_WallEdge_Intensity: 1,
+    Emission_Fridge_Intensity: 1,
+};
 
 const firstBakedTextureUrls = [
     "/texture/first_texture_lightOn.webp",
@@ -41,8 +65,10 @@ const BakedScene = ({ nodes }) => {
     const setFridgeRGB = useRGBColorStore((state) => state.setFridgeRGB);
     const setWallEdgeRGB = useRGBColorStore((state) => state.setWallEdgeRGB);
 
+    const isDarkMode = useRoomStore((state) => state.isDarkMode);
+
     // leva panel : controlling room variable (for all of the materials uniform)
-    const levaControls = useControls("Control Panel", {
+    const [levaControls, setLevaControls] = useControls("Control Panel", () => ({
         Light: folder(
             {
                 Light_1_Intensity: {
@@ -88,7 +114,7 @@ const BakedScene = ({ nodes }) => {
 
                 RGB_Hologram_Intensity: {
                     value: 0,
-                    min: 0.2,
+                    min: 0,
                     max: 0.4,
                     step: 0.01,
                 },
@@ -101,7 +127,7 @@ const BakedScene = ({ nodes }) => {
 
                 Emission_WallEdge_Intensity: {
                     value: 0,
-                    min: 0.2,
+                    min: 0,
                     max: 1,
                     step: 0.01,
                 },
@@ -114,7 +140,7 @@ const BakedScene = ({ nodes }) => {
 
                 Emission_Fridge_Intensity: {
                     value: 0,
-                    min: 0.2,
+                    min: 0,
                     max: 1,
                     step: 0.01,
                 },
@@ -127,7 +153,12 @@ const BakedScene = ({ nodes }) => {
             },
             { collapsed: true },
         ),
-    });
+    }));
+
+    // Dark Mode 切換:套用對應的 intensity preset(同步更新 Leva 面板與 uniforms)
+    useEffect(() => {
+        setLevaControls(isDarkMode ? DARK_MODE_PRESET : LIGHT_MODE_PRESET);
+    }, [isDarkMode]);
 
     // Organize collection data
     const collections = [
@@ -152,8 +183,12 @@ const BakedScene = ({ nodes }) => {
         },
     ];
 
-    return collections.map((collection, i) => (
-        <BakedMesh collection={collection} levaControls={levaControls} />
+    return collections.map((collection) => (
+        <BakedMesh
+            key={collection.key}
+            collection={collection}
+            levaControls={levaControls}
+        />
     ));
 };
 

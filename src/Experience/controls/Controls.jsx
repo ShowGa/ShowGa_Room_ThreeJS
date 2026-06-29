@@ -8,6 +8,9 @@ import { useRoomStore } from "../../stores/useRoomStore";
 // Constants data
 import { objectFocusData } from "../../constants/objectFocusData";
 
+// 鏡頭飛行(zoom in/out)的逼近速度,越小越慢、阻尼感越強
+const FOCUS_LERP_SPEED = 1.2;
+
 const Controls = () => {
     const controlRef = useRef();
     const isTransitioning = useRef(false);
@@ -58,11 +61,11 @@ const Controls = () => {
     useFrame((_, delta) => {
         if (!isTransitioning.current) return;
 
-        camera.position.lerp(desiredCameraPos.current, 2 * delta);
+        camera.position.lerp(desiredCameraPos.current, FOCUS_LERP_SPEED * delta);
 
         controlRef.current.target.lerp(
             desiredCameraTargetPos.current,
-            2 * delta,
+            FOCUS_LERP_SPEED * delta,
         );
 
         // check if the camera and target are close to desired position then change isTransitioning state
