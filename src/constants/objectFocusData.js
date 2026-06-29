@@ -16,8 +16,8 @@ export const objectFocusData = {
     // 牆上海報(left/mid/right)共用一個視角,鏡頭從房間內側看向海報牆
     poster: {
         id: "poster",
-        cameraPos: new THREE.Vector3(-1.2, 1.0, -0.55),
-        cameraTargetPos: new THREE.Vector3(-1.2, 1.1, -1.4),
+        cameraPos: new THREE.Vector3(-0.91, 0.5, -0.55),
+        cameraTargetPos: new THREE.Vector3(-0.99, 0.48, -0.9),
     },
 
     reset: {

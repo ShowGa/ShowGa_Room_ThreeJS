@@ -13,6 +13,7 @@ const LevaPanel = () => {
             options: {
                 PC_Monitor: objectFocusData.pc_monitor.id,
                 Movie_Screen: objectFocusData.movie_screen.id,
+                Poster: objectFocusData.poster.id,
                 Reset_Camera: objectFocusData.reset.id,
             },
 
